@@ -3,7 +3,7 @@ Monique Wakefield
 
 Hosting Link: 
 
-GitHub Link: 
+GitHub Link: https://github.com/m-wakefield/MERN1
 
 
 ## OVERVIEW
