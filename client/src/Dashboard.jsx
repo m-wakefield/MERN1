@@ -1,9 +1,10 @@
-// Dashboard.jsx
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Navbar from './components/Navbar';
 import './Login.css';
+
+const BASE_URL = 'https://mern1-i8rw.onrender.com';
 
 const categories = [
   'Daily Tasks',
@@ -25,9 +26,10 @@ function Dashboard() {
 
   useEffect(() => {
     if (selected) {
-      axios.get(`http://localhost:5000/questions/${selected}`)
+      axios.get(`https://mern1-i8rw.onrender.com/questions/${selected}`)
+
         .then(res => setQuestions(res.data))
-        .catch(err => console.error(err));
+        .catch(err => console.error('Error fetching questions:', err));
     }
   }, [selected]);
 
@@ -35,16 +37,20 @@ function Dashboard() {
     e.preventDefault();
     if (!form.question.trim() || !form.answer.trim()) return;
 
-    await axios.post('http://localhost:5000/questions', {
-      category: selected,
-      question: form.question,
+    try {
+      await axios.post('https://mern1-i8rw.onrender.com/questions', {
+       category: selected,
+       question: form.question,
       answer: form.answer
-    });
+});
 
-    setForm({ question: '', answer: '' });
+      setForm({ question: '', answer: '' });
 
-    const res = await axios.get(`http://localhost:5000/questions/${selected}`);
-    setQuestions(res.data);
+      const res = await axios.get(`${BASE_URL}/questions/${selected}`);
+      setQuestions(res.data);
+    } catch (err) {
+      console.error('Error posting question:', err);
+    }
   };
 
   const filteredQuestions = selected

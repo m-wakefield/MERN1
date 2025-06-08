@@ -3,6 +3,9 @@ import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 import './Login.css';
 
+//render.com URL
+const BASE_URL = 'https://mern1-i8rw.onrender.com';
+
 function Register() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -22,10 +25,9 @@ function Register() {
     }
 
     try {
-      await axios.post('http://localhost:5000/register', {
-        username,
-        password
-      });
+        conat res = await axios.post('https://mern1-i8rw.onrender.com/register', { username, password });
+}/register`, { username, password });
+      // Clear form fields
       setSuccess('Account created! Redirecting to login...');
       setTimeout(() => {
         navigate('/login');

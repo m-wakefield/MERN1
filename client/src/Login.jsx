@@ -3,6 +3,8 @@ import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import './Login.css';
 
+const BASE_URL = 'https://mern1-i8rw.onrender.com';
+
 function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -12,7 +14,8 @@ function Login() {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('http://localhost:5000/login', { username, password });
+     const res = await axios.post('https://mern1-i8rw.onrender.com/login', { username, password });
+
       navigate(`/dashboard/${res.data.username}`);
     } catch (err) {
       setError(err.response?.data?.message || 'Login failed');
