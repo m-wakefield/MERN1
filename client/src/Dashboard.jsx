@@ -21,8 +21,6 @@ function Dashboard() {
   const [questions, setQuestions] = useState([]);
   const [form, setForm] = useState({ question: '', answer: '' });
   const [search, setSearch] = useState('');
-  const [darkMode, setDarkMode] = useState(false);
-  const toggleDarkMode = () => setDarkMode(prev => !prev);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -57,8 +55,8 @@ function Dashboard() {
     : [];
 
   return (
-    <div className={darkMode ? 'bg-dark text-white min-vh-100' : 'bg-light text-dark min-vh-100'}>
-      <Navbar username={username} darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
+    <>
+      <Navbar />
       <div className="login-container">
         <div className="login-card text-start">
           <div className="d-flex justify-content-between align-items-center mb-4">
@@ -125,7 +123,7 @@ function Dashboard() {
           )}
         </div>
       </div>
-    </div>
+    </>
   );
 }
 
