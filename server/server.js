@@ -6,13 +6,11 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// MongoDB Atlas connection
 mongoose.connect('mongodb+srv://monique:<db_password>@cluster0.mm4m5qv.mongodb.net/mern_forum?retryWrites=true&w=majority');
 
 const User = require('./models/User');
 const Question = require('./models/Question');
 
-// Registration route
 app.post('/register', async (req, res) => {
   const { username, password } = req.body;
   const existing = await User.findOne({ username });
@@ -22,7 +20,6 @@ app.post('/register', async (req, res) => {
   res.json({ message: 'User registered' });
 });
 
-// Login route
 app.post('/login', async (req, res) => {
   const { username, password } = req.body;
   const user = await User.findOne({ username, password });
@@ -30,13 +27,11 @@ app.post('/login', async (req, res) => {
   res.json({ message: 'Login successful', username });
 });
 
-// Get questions by category
 app.get('/questions/:category', async (req, res) => {
   const questions = await Question.find({ category: req.params.category }).sort({ createdAt: -1 });
   res.json(questions);
 });
 
-// Post a new question
 app.post('/questions', async (req, res) => {
   const { category, question, answer } = req.body;
   const newQ = new Question({ category, question, answer });
