@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import './Login.css';
 
 function Login() {
   const [username, setUsername] = useState('');
@@ -19,20 +20,38 @@ function Login() {
   };
 
   return (
-    <div className="container mt-5">
-      <h2>Login</h2>
-      <form onSubmit={handleLogin}>
-        <div className="mb-3">
-          <label>Username</label>
-          <input className="form-control" value={username} onChange={(e) => setUsername(e.target.value)} />
+    <div className="login-container">
+      <div className="login-card">
+        <h2>Good to see you again</h2>
+        <form onSubmit={handleLogin}>
+          <div className="form-group text-start">
+            <label>Your email</label>
+            <input
+              type="text"
+              className="form-control"
+              placeholder="e.g. elon@tesla.com"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
+          </div>
+          <div className="form-group text-start">
+            <label>Your password</label>
+            <input
+              type="password"
+              className="form-control"
+              placeholder="e.g. ilovemangools123"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+          {error && <div className="alert alert-danger mt-2">{error}</div>}
+          <button type="submit" className="btn btn-success mt-3">Sign in</button>
+        </form>
+        <div className="login-links mt-3">
+          <Link to="/register">Don't have an account?</Link>
+          <a href="#">Forgot password?</a>
         </div>
-        <div className="mb-3">
-          <label>Password</label>
-          <input type="password" className="form-control" value={password} onChange={(e) => setPassword(e.target.value)} />
-        </div>
-        {error && <div className="alert alert-danger">{error}</div>}
-        <button className="btn btn-success">Login</button>
-      </form>
+      </div>
     </div>
   );
 }
