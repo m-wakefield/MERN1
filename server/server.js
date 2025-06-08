@@ -6,7 +6,8 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-mongoose.connect('mongodb+srv://monique:<Test123>@cluster0.vzig1ox.mongodb.net//Mern1?retryWrites=true&w=majority');
+mongoose.connect('mongodb+srv://monique:Test123d@cluster0.vzig1ox.mongodb.net/');
+
 
 const User = require('./models/User');
 const Question = require('./models/Question');
@@ -14,7 +15,7 @@ const Question = require('./models/Question');
 app.post('/register', async (req, res) => {
   const { username, password } = req.body;
   const existing = await User.findOne({ username });
-  if (existing) return res.status(400).json({ message: 'Username already exists' });
+  if (existing) return res.status(400).json({ message: 'Username already exists' });no
   const user = new User({ username, password });
   await user.save();
   res.json({ message: 'User registered' });
