@@ -1,7 +1,8 @@
 Caregiving Forum – MERN1 Full Stack App  
 Monique Wakefield
 
-Hosting Link: 
+Hosting Link: https://mern-1-omega.vercel.app/ (frontend)
+              https://mern1-i8rw.onrender.com  (backend)
 
 GitHub Link: https://github.com/m-wakefield/MERN1
 
