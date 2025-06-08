@@ -6,7 +6,8 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-mongoose.connect('mongodb+srv://monique:Test123d@cluster0.vzig1ox.mongodb.net/');
+mongoose.connect('mongodb+srv://monique:Test123d@cluster0.vzig1ox.mongodb.net/mern1?retryWrites=true&w=majority');
+
 
 
 const User = require('./models/User');
