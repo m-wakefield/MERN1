@@ -1,16 +1,24 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import './Login.css'; // reuse shared layout styling
 
 function App() {
   return (
-    <div style={{ padding: '2rem' }}>
-      <h1>Welcome to MERN1 Forum</h1>
-      <p>Please choose an option:</p>
-      <Link to="/login"><button>Login</button></Link>
-      <Link to="/register"><button>Register</button></Link>
+    <div className="login-container">
+      <div className="login-card">
+        <h2>Welcome to MERN1 Forum</h2>
+        <p className="mb-4">Please log in or create an account to get started.</p>
+        <div className="d-grid gap-2">
+          <Link to="/login">
+            <button className="btn btn-primary mb-2">Login</button>
+          </Link>
+          <Link to="/register">
+            <button className="btn btn-outline-primary">Register</button>
+          </Link>
+        </div>
+      </div>
     </div>
   );
 }
 
 export default App;
-
