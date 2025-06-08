@@ -32,13 +32,26 @@ app.post('/register', async (req, res) => {
 });
 
 
-app.post('/login', async (req, res) => {
-  const { username, password } = req.body;
-  const user = await User.findOne({ username, password });
-  if (!user) return res.status(401).json({ message: 'Invalid login' });
-  res.json({ message: 'Login successful', username });
-});
 
+// ✅ Login Route
+app.post('/login', async (req, res) => {
+  try {
+    const { username, password } = req.body;
+    console.log('🔐 Login attempt:', { username });
+
+    const user = await User.findOne({ username, password });
+    if (!user) {
+      console.log('❌ Invalid credentials for:', username);
+      return res.status(401).json({ message: 'Invalid login' });
+    }
+
+    console.log('✅ Login successful for:', username);
+    res.json({ message: 'Login successful', username });
+  } catch (err) {
+    console.error('❌ Login error:', err);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+});
 app.get('/questions/:category', async (req, res) => {
   const questions = await Question.find({ category: req.params.category }).sort({ createdAt: -1 });
   res.json(questions);
