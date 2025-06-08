@@ -11,16 +11,15 @@ function Login() {
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  const handleLogin = async (e) => {
-    e.preventDefault();
-    try {
-     const res = await axios.post('https://mern1-i8rw.onrender.com/login', { username, password });
-
-      navigate(`/dashboard/${res.data.username}`);
-    } catch (err) {
-      setError(err.response?.data?.message || 'Login failed');
-    }
-  };
+const handleLogin = async (e) => {
+  e.preventDefault();
+  try {
+    const res = await axios.post(`${BASE_URL}/login`, { username, password });
+    navigate(`/dashboard/${res.data.username}`);
+  } catch (err) {
+    setError(err.response?.data?.message || 'Login failed');
+  }
+};
 
   return (
     <div className="login-container">

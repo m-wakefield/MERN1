@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 import './Login.css';
 
-//render.com URL
+// Render backend URL
 const BASE_URL = 'https://mern1-i8rw.onrender.com';
 
 function Register() {
@@ -25,9 +25,7 @@ function Register() {
     }
 
     try {
-        conat res = await axios.post('https://mern1-i8rw.onrender.com/register', { username, password });
-}/register`, { username, password });
-      // Clear form fields
+      await axios.post(`${BASE_URL}/register`, { username, password });
       setSuccess('Account created! Redirecting to login...');
       setTimeout(() => {
         navigate('/login');
