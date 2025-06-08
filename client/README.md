@@ -1,12 +1,42 @@
-# React + Vite
+Caregiving Forum – MERN1 Full Stack App  
+Monique Wakefield
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Hosting Link: 
 
-Currently, two official plugins are available:
+GitHub Link: 
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Expanding the ESLint configuration
+## OVERVIEW
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+The Caregiving Forum app supports:
+
+1. Logging in and registering users (no tokens, no auth complexity, just a basic form for now)
+2. Posting caregiving questions and answers across key caregiving topics
+3. Browsing and filtering questions by caregiving category
+4. Searching through questions with a search bar
+5. Navigation between login, register, dashboard, and home (landing page)
+
+
+## Technology Used
+
+1. HTML  
+2. JavaScript  
+3. React (Vite)  
+4. React Router DOM  
+5. Node.js  
+6. Express.js  
+7. MongoDB Atlas  
+8. Bootstrap + Custom CSS
+
+
+## Enhancements (Future Ideas)
+
+1. **User Profiles** – Add profile editing, avatars, session tracking  
+2. **UI/UX** – Add toast notifications, post timestamps, reply threads  
+3. **Search & Filter Tools** – Advanced search by category + relevance  
+4. **AI Suggestions** – Auto-suggest answers using GPT or keyword matching  
+5. **Moderation/Admin** – Ability to delete or highlight helpful answers  
+6. **Deployment** – Frontend to Netlify/Vercel, backend to Render/Railway
+
+
+This is a real-world app designed to help professional caregivers, home health aides, and anyone supporting others get quick advice and offer their own experience in a helpful space.
