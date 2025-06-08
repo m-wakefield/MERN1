@@ -6,7 +6,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-mongoose.connect('mongodb+srv://monique:<db_password>@cluster0.mm4m5qv.mongodb.net/mern_forum?retryWrites=true&w=majority');
+mongoose.connect('mongodb+srv://monique:<Test123>@cluster0.vzig1ox.mongodb.net//Mern1?retryWrites=true&w=majority');
 
 const User = require('./models/User');
 const Question = require('./models/Question');
