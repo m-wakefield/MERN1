@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import './Login.css'; // reuse same styling
 
 function Register() {
   const [username, setUsername] = useState('');
@@ -23,24 +24,47 @@ function Register() {
   };
 
   return (
-    <div className="container mt-5">
-      <h2>Register</h2>
-      <form onSubmit={handleRegister}>
-        <div className="mb-3">
-          <label>Username</label>
-          <input className="form-control" value={username} onChange={(e) => setUsername(e.target.value)} />
+    <div className="login-container">
+      <div className="login-card">
+        <h2>Create Your Account</h2>
+        <form onSubmit={handleRegister}>
+          <div className="form-group text-start">
+            <label>Your email</label>
+            <input
+              type="text"
+              className="form-control"
+              placeholder="e.g. elon@tesla.com"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
+          </div>
+          <div className="form-group text-start">
+            <label>Password</label>
+            <input
+              type="password"
+              className="form-control"
+              placeholder="Create a strong password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+          <div className="form-group text-start">
+            <label>Repeat Password</label>
+            <input
+              type="password"
+              className="form-control"
+              placeholder="Repeat your password"
+              value={repeat}
+              onChange={(e) => setRepeat(e.target.value)}
+            />
+          </div>
+          {error && <div className="alert alert-danger mt-2">{error}</div>}
+          <button type="submit" className="btn btn-success mt-3">Sign up</button>
+        </form>
+        <div className="login-links mt-3">
+          <Link to="/login">Already have an account?</Link>
         </div>
-        <div className="mb-3">
-          <label>Password</label>
-          <input type="password" className="form-control" value={password} onChange={(e) => setPassword(e.target.value)} />
-        </div>
-        <div className="mb-3">
-          <label>Repeat Password</label>
-          <input type="password" className="form-control" value={repeat} onChange={(e) => setRepeat(e.target.value)} />
-        </div>
-        {error && <div className="alert alert-danger">{error}</div>}
-        <button className="btn btn-primary">Register</button>
-      </form>
+      </div>
     </div>
   );
 }

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import Navbar from './components/Navbar';
+import './Login.css'; // reuse styling
 
 const categories = ['React', 'JavaScript', 'CSS', 'HTML'];
 
@@ -10,7 +10,6 @@ function Dashboard() {
   const [selected, setSelected] = useState('');
   const [questions, setQuestions] = useState([]);
   const [form, setForm] = useState({ question: '', answer: '' });
-
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -34,54 +33,59 @@ function Dashboard() {
   };
 
   return (
-    <div className="container">
-      <Navbar username={username} />
-      <h2 className="mb-4">Select a Category</h2>
-      <div className="mb-3">
-        {categories.map(cat => (
-          <button
-            key={cat}
-            onClick={() => setSelected(cat)}
-            className={`btn me-2 mb-2 ${selected === cat ? 'btn-primary' : 'btn-outline-primary'}`}
-          >
-            {cat}
-          </button>
-        ))}
-      </div>
+    <div className="login-container">
+      <div className="login-card text-start">
+        <div className="d-flex justify-content-between align-items-center mb-4">
+          <h4 className="mb-0">Welcome, {username}</h4>
+          <button className="btn btn-outline-secondary btn-sm" onClick={() => navigate('/')}>Logout</button>
+        </div>
 
-      {selected && (
-        <>
-          <h4 className="mt-4">Questions in {selected}</h4>
-          {questions.length === 0 && <p>No questions yet.</p>}
-          {questions.map((q, idx) => (
-            <div key={idx} className="border p-3 mb-3">
-              <p><strong>Q:</strong> {q.question}</p>
-              <p><strong>A:</strong> {q.answer}</p>
-            </div>
+        <h5>Select a Category</h5>
+        <div className="mb-3">
+          {categories.map(cat => (
+            <button
+              key={cat}
+              onClick={() => setSelected(cat)}
+              className={`btn me-2 mb-2 ${selected === cat ? 'btn-primary' : 'btn-outline-primary'}`}
+            >
+              {cat}
+            </button>
           ))}
+        </div>
 
-          <form onSubmit={handleSubmit} className="mt-4">
-            <h5>Add a Question</h5>
-            <div className="mb-3">
-              <input
-                className="form-control"
-                placeholder="Question"
-                value={form.question}
-                onChange={(e) => setForm({ ...form, question: e.target.value })}
-              />
-            </div>
-            <div className="mb-3">
-              <input
-                className="form-control"
-                placeholder="Answer"
-                value={form.answer}
-                onChange={(e) => setForm({ ...form, answer: e.target.value })}
-              />
-            </div>
-            <button className="btn btn-success">Post</button>
-          </form>
-        </>
-      )}
+        {selected && (
+          <>
+            <h6 className="mt-3">Questions in {selected}</h6>
+            {questions.length === 0 && <p>No questions yet.</p>}
+            {questions.map((q, idx) => (
+              <div key={idx} className="border p-2 mb-2 rounded">
+                <strong>Q:</strong> {q.question}<br />
+                <strong>A:</strong> {q.answer}
+              </div>
+            ))}
+
+            <form onSubmit={handleSubmit} className="mt-3">
+              <div className="form-group">
+                <input
+                  className="form-control mb-2"
+                  placeholder="Your question..."
+                  value={form.question}
+                  onChange={(e) => setForm({ ...form, question: e.target.value })}
+                />
+              </div>
+              <div className="form-group">
+                <input
+                  className="form-control mb-2"
+                  placeholder="Your answer..."
+                  value={form.answer}
+                  onChange={(e) => setForm({ ...form, answer: e.target.value })}
+                />
+              </div>
+              <button className="btn btn-success w-100">Post Question</button>
+            </form>
+          </>
+        )}
+      </div>
     </div>
   );
 }
