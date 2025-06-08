@@ -1,23 +1,35 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Link, useNavigate } from 'react-router-dom';
-import './Login.css'; // reuse same styling
+import { useNavigate, Link } from 'react-router-dom';
+import './Login.css';
 
 function Register() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [repeat, setRepeat] = useState('');
   const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
   const navigate = useNavigate();
 
   const handleRegister = async (e) => {
     e.preventDefault();
+    setError('');
+    setSuccess('');
+
     if (password !== repeat) {
-      return setError('Passwords do not match');
+      setError('Passwords do not match');
+      return;
     }
+
     try {
-      await axios.post('http://localhost:5000/register', { username, password });
-      navigate('/login');
+      await axios.post('http://localhost:5000/register', {
+        username,
+        password
+      });
+      setSuccess('Account created! Redirecting to login...');
+      setTimeout(() => {
+        navigate('/login');
+      }, 2000);
     } catch (err) {
       setError(err.response?.data?.message || 'Registration failed');
     }
@@ -31,13 +43,13 @@ function Register() {
           <div className="form-group text-start">
             <label>Your email</label>
             <input
-              type="text"
               className="form-control"
               placeholder="e.g. elon@tesla.com"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
             />
           </div>
+
           <div className="form-group text-start">
             <label>Password</label>
             <input
@@ -48,6 +60,7 @@ function Register() {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
+
           <div className="form-group text-start">
             <label>Repeat Password</label>
             <input
@@ -58,10 +71,13 @@ function Register() {
               onChange={(e) => setRepeat(e.target.value)}
             />
           </div>
+
+          {success && <div className="alert alert-success mt-2">{success}</div>}
           {error && <div className="alert alert-danger mt-2">{error}</div>}
-          <button type="submit" className="btn btn-success mt-3">Sign up</button>
+
+          <button type="submit" className="btn btn-success w-100 mt-3">Sign up</button>
         </form>
-        <div className="login-links mt-3">
+        <div className="text-center mt-3">
           <Link to="/login">Already have an account?</Link>
         </div>
       </div>
