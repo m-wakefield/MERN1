@@ -8,8 +8,6 @@ app.use(express.json());
 
 mongoose.connect('mongodb+srv://monique:Bear12@cluster0.vzig1ox.mongodb.net/mern1?retryWrites=true&w=majority');
 
-
-
 const User = require('./models/User');
 const Question = require('./models/Question');
 
@@ -26,11 +24,10 @@ app.post('/register', async (req, res) => {
     await user.save();
     res.json({ message: 'User registered' });
   } catch (err) {
-    console.error('Registration error:', err);  // 👈 LOG THIS
+    console.error('Registration error:', err);
     res.status(500).json({ message: 'Internal server error' });
   }
 });
-
 
 app.post('/login', async (req, res) => {
   const { username, password } = req.body;
@@ -51,28 +48,10 @@ app.post('/questions', async (req, res) => {
   res.json({ message: 'Question posted' });
 });
 
+// Optional: Just a friendly root check
+app.get('/', (req, res) => {
+  res.send('MERN1 API is running.');
+});
+
 app.listen(5000, () => console.log('✅ Server running on http://localhost:5000'));
-import React from 'react';
-import { Link } from 'react-router-dom';
-import './Login.css';
-
-function App() {
-  return (
-    <div className="login-container">
-      <div className="login-card">
-        <h2>Welcome to the Caregiving Support Forum</h2>
-        <p>Connect, ask questions, and share knowledge with other caregivers and professionals.</p>
-        <div className="d-grid gap-2">
-          <Link to="/login">
-            <button className="btn btn-success mb-2">Login</button>
-          </Link>
-          <Link to="/register">
-            <button className="btn btn-outline-success">Register</button>
-          </Link>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-export default App;
+// Connect to MongoDB and start the server
