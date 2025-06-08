@@ -6,7 +6,8 @@ function App() {
   return (
     <div className="login-container">
       <div className="login-card">
-        <h2>Welcome to MERN1 Forum</h2>
+        <h2>Caregiving Forum & Resource Hub</h2>
+        <p>Support for caregivers, by caregivers — join the conversation.</p>
         <p className="mb-4">Please log in or create an account to get started.</p>
         <div className="d-grid gap-2">
           <Link to="/login">
