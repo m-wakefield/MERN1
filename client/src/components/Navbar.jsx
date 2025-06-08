@@ -1,34 +1,19 @@
+// Navbar.jsx
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
-function Navbar({ username }) {
+function Navbar({ username, darkMode, toggleDarkMode }) {
+  const navigate = useNavigate();
+
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+    <nav className={`navbar navbar-expand-lg ${darkMode ? 'navbar-dark bg-dark' : 'navbar-light bg-light'} mb-3`}>
       <div className="container-fluid">
-        <span className="navbar-brand">MERN1 Forum</span>
-        <div className="collapse navbar-collapse">
-          <ul className="navbar-nav ms-auto">
-            {username && (
-              <>
-                <li className="nav-item">
-                  <span className="nav-link">Welcome, {username}</span>
-                </li>
-                <li className="nav-item">
-                  <Link to="/" className="nav-link">Logout</Link>
-                </li>
-              </>
-            )}
-            {!username && (
-              <>
-                <li className="nav-item">
-                  <Link to="/login" className="nav-link">Login</Link>
-                </li>
-                <li className="nav-item">
-                  <Link to="/register" className="nav-link">Register</Link>
-                </li>
-              </>
-            )}
-          </ul>
+        <span className="navbar-brand">Caregiving Forum</span>
+        <div className="d-flex align-items-center ms-auto">
+          <button className="btn btn-outline-secondary me-2" onClick={() => navigate('/')}>Home</button>
+          <button className="btn btn-outline-info" onClick={toggleDarkMode}>
+            {darkMode ? 'Light Mode' : 'Dark Mode'}
+          </button>
         </div>
       </div>
     </nav>
